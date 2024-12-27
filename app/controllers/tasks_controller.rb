@@ -4,8 +4,28 @@ class TasksController < ApplicationController
 
   # GET /tasks
   def index
-    @tasks = Task.where(user_id: current_user.id).page(params[:page]).per(10).order("created_at DESC")
+    @tasks = Task.where(user_id: current_user.id).page(params[:page]).per(10)
 
+    if params[:category].present?
+      @tasks = @tasks.where(user_id: current_user.id,category_id: params[:category]).page(params[:page]).per(10)
+    end
+
+    # Sort tasks if a sort parameter is passed
+    if params[:sort].present?
+      sort_column = params[:sort] == 'title' ? 'title' : 'created_at'
+      @tasks = @tasks.where(user_id:current_user.id).order(sort_column).page(params[:page]).per(10)
+    else
+      @tasks = @tasks.where(user_id:current_user.id).order(created_at: :desc).page(params[:page]).per(10)
+    end
+
+    @categories = Category.all
+
+    render json: @tasks
+  end
+
+  #GET  /tasks/search
+  def search
+    @tasks = Task.search(params[:query], fields: [:title, :description])
     render json: @tasks
   end
 
