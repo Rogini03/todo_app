@@ -1,4 +1,6 @@
 class WorkspacesController < ApplicationController
+    before_action :set_workspace
+
     def create
         @workspace = Workspace.new(workspace_params)
         if @workspace.save
@@ -22,4 +24,9 @@ class WorkspacesController < ApplicationController
     def workspace_params
         params.require(:workspace).permit(:name, :url)
     end
+
+    def set_workspace
+      @workspace = request.headers['x-workspace']
+    end
+
 end

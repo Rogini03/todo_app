@@ -14,14 +14,14 @@ User.destroy_all
 (1..20).each do |id|
     User.create!(
         email: Faker::Internet.email,
-        password: "password", # issue each user the same password
+        password: "password", 
     )
 end
 p "Created #{User.count} users"
 #create category
 (1..20).each do |id|
     Category.create!(
-        id: id, # each user is assigned an id from 1-20
+        id: id, 
         name: Faker::Lorem.word
     )
 end

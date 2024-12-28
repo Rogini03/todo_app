@@ -10,8 +10,8 @@ class Workspace < ApplicationRecord
 
     def add_member(user)
         workspace_memberships.create!(user:user)
-    rescue ActiveRecord::RecordInvalid => e
-        errors.add(:base, "Failed to add member: #{e.message}")
+        rescue ActiveRecord::RecordInvalid => e
+          errors.add(:base, "Failed to add member: #{e.message}")
         false
     end
 
