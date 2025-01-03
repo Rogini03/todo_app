@@ -4,7 +4,7 @@ class TasksController < ApplicationController
 
   # GET /tasks
   def index
-    @tasks = Task.where(user_id: current_user.id).page(params[:page]).per(10)
+      @tasks = Task.where(user_id: current_user.id).page(params[:page]).per(10)
 
     if params[:category].present?
       @tasks = @tasks.where(user_id: current_user.id,category_id: params[:category]).page(params[:page]).per(10)

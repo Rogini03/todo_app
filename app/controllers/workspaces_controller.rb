@@ -9,6 +9,11 @@ class WorkspacesController < ApplicationController
             render json: {errors: @workspace.errors.full_messages}, status: :unprocessable_entity
         end
     end
+  
+    def index
+      @workspace = Workspace.all
+      render json: @workspace
+    end
 
     def add_member
         @workspace = Workspace.find(params[:id])
