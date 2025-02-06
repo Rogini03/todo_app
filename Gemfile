@@ -30,7 +30,7 @@ gem "bootsnap", require: false
 gem "rack-cors"
 
 group :development, :test do
-  gem 'rspec-rails', '~> 6.0'
+  gem 'rspec-rails', '~> 7.1'
   gem 'factory_bot_rails', '~> 6.0'
 
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
